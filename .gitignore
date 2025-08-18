@@ -1,0 +1,9 @@
+# Arquivos de compilação do C/C++
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.a
+*.lib
+*.exe
