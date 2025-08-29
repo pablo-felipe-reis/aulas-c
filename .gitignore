@@ -7,3 +7,4 @@
 *.a
 *.lib
 *.exe
+*.vscode/
