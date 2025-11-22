@@ -26,6 +26,37 @@ void ListarTerritorios(int totalTerritorios, Territorio* territorios);
 
 
 int main() {  //função principal
+    /*
+        No início do jogo, uma missão sorteada de forma automática entre diversas
+        descrições pré-definidas
+    */
+
+
+    int totalMissoesDesejadas;
+    printf("Quantas missões você deseja cadastrar?");
+    scanf("%d", &totalMissoesDesejadas);
+
+    Missao* missoesExistentes = CarregarMissoes(totalMissoesDesejadas);
+
+    Missao missaoSorteada = SortearMissao(&missoesExistentes);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     int totalTerritorios = 0; //contador de territórios cadastrados
     int idAtacante = -1, idDefensor = -1; //variáveis para armazenar o id do território atacante e defensor
@@ -103,29 +134,77 @@ Territorio* CriarTerritorios (int totalTerritorios){
 
 }
 
+// atribuirMissao, verificarMissao, exibirMissao, atacar, exibirMapa, liberarMemoria, e a main.
 
-Missao* CarregarMissoes(){
+
+
+/*
+
+Criação do vetor de missões: declarar um vetor de strings contendo ao menos cinco descrições diferentes de missões 
+estratégicas (ex: Conquistar 3 territórios seguidos, Eliminar todas as tropas da cor vermelha etc.).*/
+
+Missao* CarregarMissoes(int totalMissoes){
     
     Missao missao[5];
    
     /* 1a missão: Conquistar 3 territórios asiáticos seguidos de exército amarelo*/
-    (*missao[0].descricao) = "Conquistar 3 territórios asiáticos seguidos de exército amarelo";
+    (*missao[0].descricao) = "Conquistar territórios seguidos com 2 tropas";
     ( missao[0].seguidos) = true;
-    ( missao[0].totalTerritoriosConquistar) = 3;
-
-    (*missao[0].territorio->continente) = "Ásia";
+    ( missao[0].totalTerritoriosConquistar) = 2;
     (*missao[0].territorio->cor) = "Amarelo";
     ( missao[0].territorio->tropas) = -1; //para indicar todas
-    
-  (*missao[0].descricao) = "Conquistar 1  território, tropas azul";
+
+   // 2a missao :Conquistar 1 tropa azul 
+  
+    (*missao[0].descricao) = "Conquistar 1  território, tropas azul";
     ( missao[0].seguidos) = false;
     ( missao[0].totalTerritoriosConquistar) = 1;
     (*missao[0].territorio->cor) = "azul";
     ( missao[0].territorio->tropas) = -1;
 
+    //3a missao :Conquistar 3 tropas amarelas
 
+    (*missao[0].descricao) = "Conquistar  territórios amarelo";
+    ( missao[0].seguidos) = false;
+    ( missao[0].totalTerritoriosConquistar) = 1;
+    (*missao[0].territorio->cor) = "Amarelo";
+    ( missao[0].territorio->tropas) = -1; 
 
+     /* 4a missão: Conquistar 3 territórios asiáticos seguidos de exército verde*/
+    (*missao[0].descricao) = "Conquistar territórios seguidos com 4 tropas ";
+    ( missao[0].seguidos) = true;
+    ( missao[0].totalTerritoriosConquistar) = 3;
+    (*missao[0].territorio->cor) = "Verde";
+    ( missao[0].territorio->tropas) = -1; 
     
+     /* 4a missão: Conquistar 2 territórios seguidos de cor branca*/
+    (*missao[0].descricao) = "Conquistar territórios de cor branca";
+    ( missao[0].seguidos) = false;
+    (*missao[0].territorio->cor) = "branca";
+    ( missao[0].territorio->tropas) = -1; 
+    
+   /* 5a missão: Conquistar 2 territórios seguidos de cor verde*/
+    (*missao[0].descricao) = "Conquistar territórios de cor verde";
+    ( missao[0].seguidos) = false;
+    (*missao[0].territorio->cor) = "verde";
+    ( missao[0].territorio->tropas) = -1; 
 }        
 
+Missao SortearMissao(Missao* missoesExistentes){
 
+    int totalMissoesCadastradas =  sizeof(missoesExistentes)/sizeof(missoesExistentes[0]);
+
+
+    int numeroSorteio =(rand() % totalMissoesCadastradas);  //0,1,2,3,4..n-1
+
+    Missao missaoSorteada = (missoesExistentes)[numeroSorteio]; // todo: verificar se está correto
+
+    return missaoSorteada;
+}    
+
+
+int JogarDados(char tipoJogador[30]) {
+    printf("esperando o : '%s', jogar os dados.......\n", tipoJogador);
+    sleep((rand() % 10) +1 );  // Dorme por até 10 segundos
+    return (rand() % 6) + 1;     
+}
