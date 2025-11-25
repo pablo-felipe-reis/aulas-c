@@ -20,9 +20,23 @@ typedef struct {      //declarando a struct missao
     Territorio* territorio
 }Missao;
 
+//Protótipos das Funções usadas
+
 Territorio* CriarTerritorios (int totalTerritorios);
 void PreencherTerritorio(int totalTerritorios, Territorio* territorios);
 void ListarTerritorios(int totalTerritorios, Territorio* territorios);
+Missao SortearMissao(Missao* missoesExistentes);
+Missao* CarregarMissoes();
+ void atribuirMissao();
+ void verificarMissao();
+void exibirMissao();
+void atacar();
+void exibirMapa();
+void liberarMemoria();
+
+
+
+
 
 
 int main() {  //função principal
@@ -70,6 +84,7 @@ int main() {  //função principal
 
 
 
+//função de preencher os territórios , com nome, cor e tropas.
 
 void PreencherTerritorio(int totalTerritorios, Territorio* territorios) {
     printf("=== CADASTRO DE TERRITÓRIOS ===\n");
@@ -91,6 +106,7 @@ void PreencherTerritorio(int totalTerritorios, Territorio* territorios) {
 }
 
 
+ //
 
 void ListarTerritorios(int totalTerritorios, Territorio* territorios) {
     
@@ -137,7 +153,9 @@ Missao* CriarMissoes (int totalMissoes){
 Missao* CarregarMissoes(){
     
     //VERIFICAR LIMPAR A MEMÓRIA, BUFFER, LIBERAR, ETC
+
     int totalMissoesDesejadas;
+
     printf("Quantas missões você deseja cadastrar?");
     scanf("%d", &totalMissoesDesejadas);
 
@@ -176,10 +194,37 @@ Missao SortearMissao(Missao* missoesExistentes){
 
     return missaoSorteada;
 }    
+ void atribuirMissao(){
 
+ }
+
+void verificarMissao(){
+
+}
+
+void exibirMissao(){
+
+}
+
+
+void atacar(){
+
+}
+
+void exibirMapa(){
+
+}
+
+void liberarMemoria(){
+    
+
+}
+
+// função para sortear 
 
 int JogarDados(char tipoJogador[30]) {
     printf("esperando o : '%s', jogar os dados.......\n", tipoJogador);
     Sleep((rand() % 10) +1 );  // Dorme por até 10 segundos
     return (rand() % 6) + 1;     
 } 
+
