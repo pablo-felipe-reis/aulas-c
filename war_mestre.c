@@ -30,32 +30,11 @@ int main() {  //função principal
         No início do jogo, uma missão sorteada de forma automática entre diversas
         descrições pré-definidas
     */
+    
 
-
-    int totalMissoesDesejadas;
-    printf("Quantas missões você deseja cadastrar?");
-    scanf("%d", &totalMissoesDesejadas);
-
-    Missao* missoesExistentes = CarregarMissoes(totalMissoesDesejadas);
+    Missao* missoesExistentes = CarregarMissoes();
 
     Missao missaoSorteada = SortearMissao(&missoesExistentes);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     int totalTerritorios = 0; //contador de territórios cadastrados
@@ -134,61 +113,57 @@ Territorio* CriarTerritorios (int totalTerritorios){
 
 }
 
-// atribuirMissao, verificarMissao, exibirMissao, atacar, exibirMapa, liberarMemoria, e a main.
+/* atribuirMissao, verificarMissao, exibirMissao, atacar, exibirMapa, liberarMemoria, 
 
+OK - e a main.
 
+*/
 
 /*
 
 Criação do vetor de missões: declarar um vetor de strings contendo ao menos cinco descrições diferentes de missões 
 estratégicas (ex: Conquistar 3 territórios seguidos, Eliminar todas as tropas da cor vermelha etc.).*/
 
-Missao* CarregarMissoes(int totalMissoes){
+Missao* CriarMissoes (int totalMissoes){
+    Missao* missoes = (Missao*)calloc(totalMissoes, sizeof(Missao));
+    return missoes;
     
-    Missao missao[5];
-   
-    /* 1a missão: Conquistar 3 territórios asiáticos seguidos de exército amarelo*/
-    (*missao[0].descricao) = "Conquistar territórios seguidos com 2 tropas";
-    ( missao[0].seguidos) = true;
-    ( missao[0].totalTerritoriosConquistar) = 2;
-    (*missao[0].territorio->cor) = "Amarelo";
-    ( missao[0].territorio->tropas) = -1; //para indicar todas
 
-   // 2a missao :Conquistar 1 tropa azul 
-  
-    (*missao[0].descricao) = "Conquistar 1  território, tropas azul";
-    ( missao[0].seguidos) = false;
-    ( missao[0].totalTerritoriosConquistar) = 1;
-    (*missao[0].territorio->cor) = "azul";
-    ( missao[0].territorio->tropas) = -1;
+}
 
-    //3a missao :Conquistar 3 tropas amarelas
 
-    (*missao[0].descricao) = "Conquistar  territórios amarelo";
-    ( missao[0].seguidos) = false;
-    ( missao[0].totalTerritoriosConquistar) = 1;
-    (*missao[0].territorio->cor) = "Amarelo";
-    ( missao[0].territorio->tropas) = -1; 
 
-     /* 4a missão: Conquistar 3 territórios asiáticos seguidos de exército verde*/
-    (*missao[0].descricao) = "Conquistar territórios seguidos com 4 tropas ";
-    ( missao[0].seguidos) = true;
-    ( missao[0].totalTerritoriosConquistar) = 3;
-    (*missao[0].territorio->cor) = "Verde";
-    ( missao[0].territorio->tropas) = -1; 
+
+Missao* CarregarMissoes(){
     
-     /* 4a missão: Conquistar 2 territórios seguidos de cor branca*/
-    (*missao[0].descricao) = "Conquistar territórios de cor branca";
-    ( missao[0].seguidos) = false;
-    (*missao[0].territorio->cor) = "branca";
-    ( missao[0].territorio->tropas) = -1; 
+    //VERIFICAR LIMPAR A MEMÓRIA, BUFFER, LIBERAR, ETC
+    int totalMissoesDesejadas;
+    printf("Quantas missões você deseja cadastrar?");
+    scanf("%d", &totalMissoesDesejadas);
+
+    Missao* missao = CriarMissoes(totalMissoesDesejadas);   
     
-   /* 5a missão: Conquistar 2 territórios seguidos de cor verde*/
-    (*missao[0].descricao) = "Conquistar territórios de cor verde";
-    ( missao[0].seguidos) = false;
-    (*missao[0].territorio->cor) = "verde";
-    ( missao[0].territorio->tropas) = -1; 
-}        
+    for (int i = 0; i < totalMissoesDesejadas; i++) 
+    {        
+        printf("Quantos territórios vc deseja conquistar para esta missão?");
+        scanf("%d", &missao[i].totalTerritoriosConquistar);
+
+        printf("Esses territórios são seguidos?");
+        scanf("%d", &missao[i].seguidos);
+
+        printf("Qual a cor desejadas para esses territórios?");
+        scanf("%c", missao[i].territorio->cor);
+
+        printf("Quantas tropas de cada território?. Use '-1' para indicar todas"); // todo: melhorar a usabilidade, pablo :)
+        scanf("%d", &missao[i].territorio->tropas);
+
+        char buffer[100]; 
+        sprintf(buffer, "Conquistar %d territórios seguidos com %dtropas", missao[i].totalTerritoriosConquistar, missao[i].territorio->tropas);
+        strcpy(missao[i].descricao, buffer);
+    }
+
+    return missao;
+}    
 
 Missao SortearMissao(Missao* missoesExistentes){
 
@@ -205,6 +180,6 @@ Missao SortearMissao(Missao* missoesExistentes){
 
 int JogarDados(char tipoJogador[30]) {
     printf("esperando o : '%s', jogar os dados.......\n", tipoJogador);
-    sleep((rand() % 10) +1 );  // Dorme por até 10 segundos
+    Sleep((rand() % 10) +1 );  // Dorme por até 10 segundos
     return (rand() % 6) + 1;     
-}
+} 
