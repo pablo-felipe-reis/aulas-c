@@ -44,12 +44,17 @@ int main() {  //função principal
         No início do jogo, uma missão sorteada de forma automática entre diversas
         descrições pré-definidas
     */
+
+    int totalMissoesDesejadas=0;
+
+    printf("Quantas missões você deseja cadastrar?");
+    scanf("%d", &totalMissoesDesejadas);
+
+    Missao* missoesExistentes [] = CarregarMissoes(totalMissoesDesejadas);
+
+    Missao* missaoSorteada = null;
     
-
-    Missao* missoesExistentes = CarregarMissoes();
-
-    Missao missaoSorteada = SortearMissao(&missoesExistentes);
-
+    atribuirMissao(missaoSorteada, missoesExistentes, totalMissoesDesejadas);
 
     int totalTerritorios = 0; //contador de territórios cadastrados
     int idAtacante = -1, idDefensor = -1; //variáveis para armazenar o id do território atacante e defensor
@@ -150,14 +155,9 @@ Missao* CriarMissoes (int totalMissoes){
 
 
 
-Missao* CarregarMissoes(){
+Missao* CarregarMissoes(int totalMissoesDesejadas){
     
     //VERIFICAR LIMPAR A MEMÓRIA, BUFFER, LIBERAR, ETC
-
-    int totalMissoesDesejadas;
-
-    printf("Quantas missões você deseja cadastrar?");
-    scanf("%d", &totalMissoesDesejadas);
 
     Missao* missao = CriarMissoes(totalMissoesDesejadas);   
     
@@ -183,10 +183,7 @@ Missao* CarregarMissoes(){
     return missao;
 }    
 
-Missao SortearMissao(Missao* missoesExistentes){
-
-    int totalMissoesCadastradas =  sizeof(missoesExistentes)/sizeof(missoesExistentes[0]);
-
+Missao* SortearMissao(Missao* missoesExistentes[], int totalMissoesCadastradas){
 
     int numeroSorteio =(rand() % totalMissoesCadastradas);  //0,1,2,3,4..n-1
 
@@ -194,10 +191,15 @@ Missao SortearMissao(Missao* missoesExistentes){
 
     return missaoSorteada;
 }    
- void atribuirMissao(){
 
- }
+void atribuirMissao(Missao* destino, Missao* missoes[], int totalMissoes)
+{
+    &destino = SortearMissao(missoes, totalMissoes);
+}
 
+//que sorteia uma missão e copia para a variável de missão do jogador usando strcpy.
+
+    
 void verificarMissao(){
 
 }
