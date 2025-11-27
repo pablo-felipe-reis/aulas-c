@@ -45,21 +45,6 @@ int main() {  //função principal
         descrições pré-definidas
     */
 
-    int totalMissoesDesejadas=0;
-
-    printf("Quantas missões você deseja cadastrar?");
-    scanf("%d", &totalMissoesDesejadas);
-
-    Missao* missoesExistentes [] = CarregarMissoes(totalMissoesDesejadas);
-
-    Missao* missaoSorteada = null;
-    
-    atribuirMissao(missaoSorteada, missoesExistentes, totalMissoesDesejadas);
-
-    int totalTerritorios = 0; //contador de territórios cadastrados
-    int idAtacante = -1, idDefensor = -1; //variáveis para armazenar o id do território atacante e defensor
-    
-    srand(time(NULL));
 
     printf("QUANTOS TERRITÓRIO VOCE QUER CADATRAR? \n");
     scanf("%d", &totalTerritorios); //lendo a quantidade de territórios que o usuário quer cadastrar
@@ -85,6 +70,26 @@ int main() {  //função principal
     
        
     ListarTerritorios(totalTerritorios, territorios); //chamando a função para exibir o placar
+
+    //cadastar missões
+
+    
+    int totalMissoesDesejadas=0;
+
+    printf("Quantas missões você deseja cadastrar?");
+    scanf("%d", &totalMissoesDesejadas);
+
+    Missao* missoesExistentes [] = CarregarMissoes(totalMissoesDesejadas);
+
+    Missao* missaoSorteada = null;
+    
+    atribuirMissao(missaoSorteada, missoesExistentes, totalMissoesDesejadas);
+
+    int totalTerritorios = 0; //contador de territórios cadastrados
+    int idAtacante = -1, idDefensor = -1; //variáveis para armazenar o id do território atacante e defensor
+    
+    srand(time(NULL));  
+    
 }
 
 
