@@ -1,0 +1,66 @@
+Requisitos funcionais
+
+
+Seu programa em C deverá:
+
+ 
+
+Criar uma árvore binária que represente o mapa da mansão, com pistas já associadas aos cômodos.
+ 
+Criar uma árvore BST na qual serão armazenadas as pistas coletadas.
+ 
+Permitir a exploração da mansão a partir do "Hall de Entrada", escolhendo o próximo caminho entre esquerda (e), direita (d) ou sair (s).
+ 
+Adicionar automaticamente à árvore de pistas cada pista encontrada durante a jornada.
+ 
+Exibir todas as pistas coletadas em ordem alfabética ao final da exploração.
+ 
+
+Cada cômodo possui:
+
+ 
+
+nome: string com o nome da sala (ex: “Sala de Estar”, “Cozinha”).
+ 
+pista: string opcional com o conteúdo da pista encontrada naquele cômodo.
+
+Requisitos não funcionais
+
+
+Usabilidade: o programa deve apresentar mensagens claras sobre localização atual, pistas e opções disponíveis.
+ 
+Legibilidade: o código-fonte deve ser organizado, indentado e com nomes de variáveis compreensíveis.
+ 
+Documentação: comentário de cada parte importante do código, incluindo:
+ 
+criarSala() – cria dinamicamente um cômodo com ou sem pista.
+ 
+inserirPista() – insere uma nova pista na árvore de pistas.
+ 
+explorarSalasComPistas() – controla a navegação entre salas e coleta de pistas.
+ 
+exibirPistas() – imprime a árvore de pistas em ordem alfabética.
+
+Simplificações para o nível aventureiro
+
+
+O mapa da mansão é fixo e pré-definido no main().Ou seja, não há inserção ou remoção dinâmica de salas.
+ 
+Não há detecção automática do fim da jornada: o usuário deve optar por sair (s) a qualquer momento.
+ 
+As árvores não precisam ser balanceadas ou otimizadas.
+
+Conceitos trabalhados
+
+
+Árvore binária: é a estrutura hierárquica para modelar os cômodos da mansão.
+ 
+Árvore binária de busca (BST): armazena as pistas de forma ordenada.
+ 
+Structs: usa tipos personalizados (Sala, PistaNode) para modelar os dados.
+ 
+Alocação dinâmica: usa malloc() para criação de elementos das árvores.
+ 
+Recursividade: exploração das árvores e exibição ordenada das pistas.
+ 
+Modularização: separação clara de responsabilidades por função.
